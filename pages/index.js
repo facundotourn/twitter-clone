@@ -1,26 +1,26 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import Head from 'next/head'
 import AppLayout from 'components/AppLayout'
 import Button from 'components/Button'
 import Github from 'components/Icons/Github'
 import { colors } from 'styles/theme'
 
-import { loginWithGithub, onAuthStateChanged } from 'firebase/client'
-import Avatar from 'components/Avatar'
+import { loginWithGithub } from 'firebase/client'
+import { useRouter } from 'next/router'
+import useUser, { USER_STATES } from 'hooks/useUser'
 
 export default function Home() {
-  const [user, setUser] = useState(undefined)
+  const user = useUser()
+  const router = useRouter()
 
   useEffect(() => {
-    onAuthStateChanged(setUser)
-  }, [])
+    user && router.replace('/home')
+  }, [user])
 
   const handleClick = () => {
-    loginWithGithub()
-      .then(setUser)
-      .catch(err => {
-        console.log(err)
-      })
+    loginWithGithub().catch(err => {
+      console.log(err)
+    })
   }
 
   return (
@@ -38,21 +38,13 @@ export default function Home() {
             Talk about development <br /> with developers
           </h2>
           <div>
-            {!user && (
+            {user === USER_STATES.NOT_LOGGED && (
               <Button onClick={handleClick}>
                 <Github fill="#fff" height={30} width={30} />
                 Log in with Github
               </Button>
             )}
-            {user && user.avatar && (
-              <div>
-                <Avatar
-                  alt={user.username}
-                  src={user.avatar}
-                  text={user.username}
-                />
-              </div>
-            )}
+            {user === USER_STATES.NOT_KNOWN && <span>Loading...</span>}
           </div>
         </section>
       </AppLayout>
