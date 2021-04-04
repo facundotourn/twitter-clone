@@ -12,7 +12,7 @@ const firebaseConfig = {
 
 !firebase.apps.length && firebase.initializeApp(firebaseConfig)
 
-const mapUserFromFirebaseAuthToUser = (user) => {
+const mapUserFromFirebaseAuthToUser = user => {
   const { displayName, email, photoURL } = user
 
   return {
@@ -22,11 +22,9 @@ const mapUserFromFirebaseAuthToUser = (user) => {
   }
 }
 
-export const onAuthStateChanged = (onChange) => {
-  return firebase.auth().onAuthStateChanged((user) => {
-    if (!user) return
-
-    const normalizedUser = mapUserFromFirebaseAuthToUser(user)
+export const onAuthStateChanged = onChange => {
+  return firebase.auth().onAuthStateChanged(user => {
+    const normalizedUser = user ? mapUserFromFirebaseAuthToUser(user) : null
     onChange(normalizedUser)
   })
 }
