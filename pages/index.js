@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
 import Head from 'next/head'
-import AppLayout from 'components/AppLayout'
 import Button from 'components/Button'
 import Github from 'components/Icons/Github'
 import { colors } from 'styles/theme'
@@ -30,24 +29,22 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <AppLayout>
-        <section>
-          <img src="/coffee.png" alt="Logo"></img>
-          <h1>Devter</h1>
-          <h2>
-            Talk about development <br /> with developers
-          </h2>
-          <div>
-            {user === USER_STATES.NOT_LOGGED && (
-              <Button onClick={handleClick}>
-                <Github fill="#fff" height={30} width={30} />
-                Log in with Github
-              </Button>
-            )}
-            {user === USER_STATES.NOT_KNOWN && <span>Loading...</span>}
-          </div>
-        </section>
-      </AppLayout>
+      <section>
+        <img src="/coffee.png" alt="Logo"></img>
+        <h1>Devter</h1>
+        <h2>
+          Talk about development <br /> with developers
+        </h2>
+        <div>
+          {user === USER_STATES.NOT_LOGGED && (
+            <Button onClick={handleClick}>
+              <Github fill="#fff" height={30} width={30} />
+              Log in with Github
+            </Button>
+          )}
+          {user === USER_STATES.NOT_KNOWN && <span>Loading...</span>}
+        </div>
+      </section>
 
       <style jsx>{`
         img {

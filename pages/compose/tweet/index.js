@@ -1,4 +1,3 @@
-import AppLayout from 'components/AppLayout'
 import Button from 'components/Button'
 import useUser from 'hooks/useUser'
 import { useEffect, useState } from 'react'
@@ -90,34 +89,32 @@ export default function ComposeTweet() {
 
   return (
     <>
-      <AppLayout>
-        <Head>
-          <title>Nuevo devit / Devter</title>
-        </Head>
-        <section className="form-container">
-          <section className="avatar-container">
-            <Avatar src={user ? user.avatar : ''} />
-          </section>
-          <form onSubmit={handleSubmit}>
-            <textarea
-              onDragEnter={handleDragEnter}
-              onDragLeave={handleDragLeave}
-              onDrop={handleDrop}
-              onChange={handleChange}
-              placeholder="¿Qué está pasando?"
-            ></textarea>
-            {imgURL && (
-              <section className="remove-img">
-                <button onClick={() => setImgURL(null)}>x</button>
-                <img src={imgURL}></img>
-              </section>
-            )}
-            <div>
-              <Button disabled={isButtonDisabled}>Devitear</Button>
-            </div>
-          </form>
+      <Head>
+        <title>Nuevo devit / Devter</title>
+      </Head>
+      <section className="form-container">
+        <section className="avatar-container">
+          <Avatar src={user ? user.avatar : ''} />
         </section>
-      </AppLayout>
+        <form onSubmit={handleSubmit}>
+          <textarea
+            onDragEnter={handleDragEnter}
+            onDragLeave={handleDragLeave}
+            onDrop={handleDrop}
+            onChange={handleChange}
+            placeholder="¿Qué está pasando?"
+          ></textarea>
+          {imgURL && (
+            <section className="remove-img">
+              <button onClick={() => setImgURL(null)}>x</button>
+              <img src={imgURL}></img>
+            </section>
+          )}
+          <div>
+            <Button disabled={isButtonDisabled}>Devitear</Button>
+          </div>
+        </form>
+      </section>
       <style jsx>{`
         div {
           padding: 15px;

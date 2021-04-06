@@ -1,4 +1,3 @@
-import AppLayout from 'components/AppLayout'
 import Devit from 'components/Devit'
 import { fetchLatestDevits } from 'firebase/client'
 import useUser from 'hooks/useUser'
@@ -24,49 +23,47 @@ export default function HomePage() {
 
   return (
     <>
-      <AppLayout>
-        <Head>
-          <title>Inicio / Devter</title>
-        </Head>
-        <header>
-          <h2>Inicio</h2>
-        </header>
-        <section>
-          {timeline.map(
-            ({ avatar, img, content, userName, id, userId, createdAt }) => {
-              return (
-                <Devit
-                  key={id}
-                  createdAt={createdAt}
-                  userName={userName}
-                  avatar={avatar}
-                  img={img}
-                  content={content}
-                  id={id}
-                  userId={userId}
-                />
-              )
-            }
-          )}
-        </section>
-        <nav>
-          <Link href={'/home'}>
-            <a>
-              <Home width={32} height={32} stroke="#09f" />
-            </a>
-          </Link>
-          <Link href={'/search'}>
-            <a>
-              <Search width={32} height={32} stroke="#09f" />
-            </a>
-          </Link>
-          <Link href={'/compose/tweet'}>
-            <a>
-              <Create width={32} height={32} stroke="#09f" />
-            </a>
-          </Link>
-        </nav>
-      </AppLayout>
+      <Head>
+        <title>Inicio / Devter</title>
+      </Head>
+      <header>
+        <h2>Inicio</h2>
+      </header>
+      <section>
+        {timeline.map(
+          ({ avatar, img, content, userName, id, userId, createdAt }) => {
+            return (
+              <Devit
+                key={id}
+                createdAt={createdAt}
+                userName={userName}
+                avatar={avatar}
+                img={img}
+                content={content}
+                id={id}
+                userId={userId}
+              />
+            )
+          }
+        )}
+      </section>
+      <nav>
+        <Link href={'/home'}>
+          <a>
+            <Home width={32} height={32} stroke="#09f" />
+          </a>
+        </Link>
+        <Link href={'/search'}>
+          <a>
+            <Search width={32} height={32} stroke="#09f" />
+          </a>
+        </Link>
+        <Link href={'/compose/tweet'}>
+          <a>
+            <Create width={32} height={32} stroke="#09f" />
+          </a>
+        </Link>
+      </nav>
       <style jsx>{`
         header {
           display: flex;
