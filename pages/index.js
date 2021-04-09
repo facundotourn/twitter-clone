@@ -25,7 +25,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>devter</title>
+        <title>hache twitter</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 

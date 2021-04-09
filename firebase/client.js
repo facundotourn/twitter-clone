@@ -14,17 +14,6 @@ const firebaseConfig = {
 
 const db = firebase.firestore()
 
-const mapUserFromFirebaseAuthToUser = user => {
-  const { displayName, email, photoURL, uid } = user
-
-  return {
-    avatar: photoURL,
-    username: displayName,
-    email,
-    uid,
-  }
-}
-
 export const onAuthStateChanged = onChange => {
   return firebase.auth().onAuthStateChanged(user => {
     const normalizedUser = user ? mapUserFromFirebaseAuthToUser(user) : null
@@ -50,18 +39,6 @@ export const addDevit = ({ avatar, content, userId, userName, img }) => {
   })
 }
 
-const mapDevitFromFirebaseToDevitObject = doc => {
-  const data = doc.data()
-  const id = doc.id
-  const { createdAt } = data
-
-  return {
-    ...data,
-    id,
-    createdAt: +createdAt.toDate(),
-  }
-}
-
 export const listenLatestDevits = handleNewDevits => {
   return db
     .collection('devits')
@@ -78,4 +55,27 @@ export const uploadImage = file => {
   const task = ref.put(file)
 
   return task
+}
+
+const mapDevitFromFirebaseToDevitObject = doc => {
+  const data = doc.data()
+  const id = doc.id
+  const { createdAt } = data
+
+  return {
+    ...data,
+    id,
+    createdAt: +createdAt.toDate(),
+  }
+}
+
+const mapUserFromFirebaseAuthToUser = user => {
+  const { displayName, email, photoURL, uid } = user
+
+  return {
+    avatar: photoURL,
+    username: displayName,
+    email,
+    uid,
+  }
 }
