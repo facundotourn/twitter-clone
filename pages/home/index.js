@@ -26,7 +26,7 @@ export default function HomePage() {
   return (
     <>
       <Head>
-        <title>Inicio / Devter</title>
+        <title>Inicio / Twita</title>
       </Head>
       <header>
         <h2>Inicio</h2>
